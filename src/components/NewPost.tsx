@@ -1,11 +1,31 @@
-import React from 'react'
-import { Button, Label, PageTitle } from '../pages/styled'
-import { NewPostDiv, Input, TextBox } from './styled'
+import React, { useState } from 'react'
+import { Button, PageTitle } from '../pages/styled'
+import { NewPostDiv, Input, TextBox, Label } from './styled'
 
-export default function NewPost() {
-  const [activateButton, setActivateButton] = React.useState('#666')
-  const [title, setTitle] = React.useState('')
-  const [content, setContent] = React.useState('')
+export default function NewPost({ username, setFlag, flag }: { username: string, setFlag: any, flag: boolean }) {
+  const [activateButton, setActivateButton] = useState('#666')
+  const [title, setTitle] = useState('')
+  const [content, setContent] = useState('')
+
+  const handleCreate = () => {
+    const url = 'https://dev.codeleap.co.uk/careers/'
+    const post = {
+      username,
+      title: title,
+      content: content
+    }
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(post)
+    }
+    fetch(url, options)
+      .then(response => response.json())
+      .then(() => setFlag(!flag))
+      .catch(err => console.log(err))
+  }
 
   const checkButton = () => {
     if (content.length > 0 && title.length > 0) {
@@ -22,6 +42,7 @@ export default function NewPost() {
     setContent(e.target.value)
     checkButton()
   }
+
   return (
     <NewPostDiv>
       <PageTitle>What's on your mind?</PageTitle>
@@ -31,7 +52,7 @@ export default function NewPost() {
       <TextBox
         onChange={handleContent}
       />
-      <Button background={activateButton}>Create</Button>
+      <Button onClick={handleCreate} background={activateButton}>Create</Button>
     </NewPostDiv>
 
   )

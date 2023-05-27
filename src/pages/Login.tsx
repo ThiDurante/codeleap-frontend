@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 export default function LoginForm() {
   const [user, setUser] = useState('');
+  const [activateButton, setActivateButton] = useState('#666');
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -20,13 +21,14 @@ export default function LoginForm() {
       <Label htmlFor="username">Please enter your username</Label>
       <Input
         onChange={(username) => {
-          setUser(username.target.value);
+          setUser(username.target.value)
+          username.target.value.length > 0 ? setActivateButton('') : setActivateButton('#666');
         }}
         type="text"
         id="username"
         placeholder="John Doe"
       />
-      <Button onClick={handlelogin}>ENTER</Button>
+      <Button background={activateButton} onClick={handlelogin}>ENTER</Button>
     </LoginMain>
   );
 }

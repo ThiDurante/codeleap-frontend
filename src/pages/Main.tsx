@@ -9,32 +9,31 @@ import Post from '../components/Post';
 
 export default function Main() {
   const [posts, setPosts] = useState([])
+  const [flag, setFlag] = useState(false)
   const { name } = useSelector((state: RootState) => state.user)
   const navigate = useNavigate()
   useEffect(() => {
     if (!name) {
       navigate('/login')
     }
-    //fetch with axios
+    //fetch with axios 
     const url = 'https://dev.codeleap.co.uk/careers/'
     const fetchPosts = async () => {
       const response = await fetch(url)
       const data = await response.json()
-      console.log(data);
 
       setPosts(data.results)
     }
     fetchPosts()
 
-  }, [name, navigate])
-  console.log(posts);
+  }, [name, navigate, flag])
 
   return (
     <MainDiv>
       <Header />
-      <NewPost />
+      <NewPost username={name} setFlag={setFlag} flag={flag} />
       {posts.length > 1 && posts.map((post: any) => {
-        return <Post key={post.id} title={post.title} content={post.content} />
+        return <Post key={post.id} post={post} />
       })}
     </MainDiv>
   )

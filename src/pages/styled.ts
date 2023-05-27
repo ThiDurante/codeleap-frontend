@@ -16,8 +16,9 @@ export const MainDiv = styled.div`
   display: flex;
   flex-direction: column;
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   color: #ffffff;
+  overflow: scroll;
 `;
 
 export const Button = styled.button.attrs((props: any) => ({
@@ -62,5 +63,4 @@ export const PageTitle = styled.h1`
   color: #000000;
   margin-left: 20px;
   margin-bottom: 20px;
-  margin-top: -20px;
 `;

@@ -1,7 +1,8 @@
 import React from 'react'
+import { Model } from './styled'
 
 export default function Delete() {
   return (
-    <div>Delete</div>
+    <Model>Delete</Model>
   )
 }
