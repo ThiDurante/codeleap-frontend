@@ -1,7 +1,12 @@
 import React from 'react'
 
-export default function Post() {
+export default function Post({ title, content }: any) {
   return (
-    <div>Post</div>
+    <div>
+      <div>{title}
+        <div>Delete/Edit</div>
+      </div>
+      <div>{content}</div>
+    </div>
   )
 }

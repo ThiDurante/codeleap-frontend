@@ -12,10 +12,20 @@ export const LoginMain = styled.div`
   border-radius: 16px;
 `;
 
-export const Button = styled.button`
+export const MainDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  color: #ffffff;
+`;
+
+export const Button = styled.button.attrs((props: any) => ({
+  background: props.background || '#7695ec',
+}))`
   width: 111px;
   height: 32px;
-  background-color: #7695ec;
+  background-color: ${(props) => props.background};
   color: white;
   font-weight: 700;
   font-size: 16px;
@@ -42,6 +52,7 @@ export const Label = styled.label`
   font-size: 16px;
   font-weight: 400;
   margin-left: 20px;
+  color: #000000;
 `;
 
 export const PageTitle = styled.h1`
